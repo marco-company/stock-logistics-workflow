@@ -3,7 +3,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 {
     "name": "Stock Valuation Layer Usage",
-    "version": "16.0.2.0.1",
+    "version": "16.0.2.1.0",
     "category": "Warehouse Management",
     "development_status": "Alpha",
     "license": "AGPL-3",
