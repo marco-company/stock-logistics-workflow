@@ -47,6 +47,9 @@ To configure this module, you need to:
 #. Go to a *Inventory > Master Data > Products*.
 #. Set 'auto create lot' option for the products you need.
 
+#. Go to a *Inventory > Configuration > Products > Product Categories*.
+#. Set 'auto create lot' option for the categories you need.
+
 Usage
 =====
 
@@ -54,7 +57,7 @@ To use this module you need to:
 
 #. Go to a *Product > Inventory tab*.
 #. Set a tracking option for this product.
-#. Set auto create lot.
+#. Set auto create lot on the product or in the category.
 #. Go to *Inventory > Incoming* and create one.
 #. Validate picking without lot.
 

@@ -22,7 +22,9 @@ class StockPicking(models.Model):
                 ("lot_id", "=", False),
                 ("lot_name", "=", False),
                 ("product_id.tracking", "!=", "none"),
+                "|",
                 ("product_id.auto_create_lot", "=", True),
+                ("product_id.categ_id.auto_create_lot", "=", True),
             ]
 
         pickings = self.filtered(lambda p: p.picking_type_id.auto_create_lot)
