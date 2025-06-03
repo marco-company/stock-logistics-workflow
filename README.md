@@ -48,7 +48,7 @@ addon | version | maintainers | summary
 [stock_move_actual_date](stock_move_actual_date/) | 16.0.1.0.0 |  | Stock Move Actual Date
 [stock_move_free_reservation_reassign](stock_move_free_reservation_reassign/) | 16.0.1.0.1 |  | Try to reassign a move when its reservation is removed due to the related quant becoming unavailable
 [stock_move_line_auto_fill](stock_move_line_auto_fill/) | 16.0.1.1.1 |  | Stock Move Line auto fill
-[stock_move_line_change_lot](stock_move_line_change_lot/) | 16.0.1.1.0 |  | Stock Move Line Change Lot
+[stock_move_line_change_lot](stock_move_line_change_lot/) | 16.0.1.2.0 |  | Stock Move Line Change Lot
 [stock_move_line_dates](stock_move_line_dates/) | 16.0.1.0.1 | <a href='https://github.com/Shide'><img src='https://github.com/Shide.png' width='32' height='32' style='border-radius:50%;' alt='Shide'/></a> <a href='https://github.com/rafaelbn'><img src='https://github.com/rafaelbn.png' width='32' height='32' style='border-radius:50%;' alt='rafaelbn'/></a> | Add Date Scheduled and Deadline dates in move lines
 [stock_move_line_expiration_date_required](stock_move_line_expiration_date_required/) | 16.0.1.0.2 |  | Stock Move Line Expiration Date Required
 [stock_move_line_lock_qty_done](stock_move_line_lock_qty_done/) | 16.0.1.1.0 |  | Restrict modifications to the done quantity in validated stock moves
