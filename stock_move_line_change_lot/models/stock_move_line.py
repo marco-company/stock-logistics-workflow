@@ -61,11 +61,38 @@ class StockMoveLine(models.Model):
 
     def write(self, vals):
         if self.env.context.get("bypass_reservation_update"):
-            return super(StockMoveLine, self).write(vals)
+            return super().write(vals)
 
         if not vals.get("lot_id"):
-            return super(StockMoveLine, self).write(vals)
+            return super().write(vals)
 
+        res, already_processed, to_reassign_moves = self._do_change_lot(vals)
+        res &= super(StockMoveLine, self - already_processed).write(vals)
+        if to_reassign_moves:
+            to_reassign_moves._action_assign()
+
+        return res
+
+    def _do_change_lot(self, vals):
+        """
+        Change the lot assigned to stock move lines, handling reservation logic.
+
+        Attempts to change the lot of the current stock move lines to `vals["lot_id"]`.
+        Ensures the new lot belongs to the same product, checks available quantities,
+        and manages reservations. If not enough is available, tries to free up reserved
+        quantities from other move lines. Updates the package if needed and partially
+        reserves if full reservation is not possible.
+
+        :param vals (dict): Values to update, must include "lot_id". May also include
+            "location_id" and "package_id".
+
+        :returns tuple:
+            - res (bool): True if successful for all move lines.
+            - already_processed (recordset): Move lines already processed.
+            - to_reassign_moves (recordset): Moves needing reassignment.
+
+        :raises UserError: If the new lot does not belong to the same product.
+        """
         res = True
         already_processed = self.browse()
         to_reassign_moves = self.env["stock.move"]
@@ -100,13 +127,15 @@ class StockMoveLine(models.Model):
                     strict=False,
                 )
                 .filtered(
-                    lambda q: q.location_id == location
-                    and is_bigger(q.quantity, 0, rounding)
+                    lambda q, r=rounding, loc=location: q.location_id == loc
+                    and is_bigger(q.quantity, 0, r)
                 )
             )
             if quants:
                 quants_available = quants.filtered(
-                    lambda q: is_bigger(q.quantity - q.reserved_quantity, 0, rounding)
+                    lambda q, r=rounding: is_bigger(
+                        q.quantity - q.reserved_quantity, 0, r
+                    )
                 )
 
                 if (
@@ -157,10 +186,4 @@ class StockMoveLine(models.Model):
                 # recompute the state to be "partially_available"
                 move_line.move_id._recompute_state()
                 already_processed |= move_line
-
-        res &= super(StockMoveLine, self - already_processed).write(vals)
-
-        if to_reassign_moves:
-            to_reassign_moves._action_assign()
-
-        return res
+        return res, already_processed, to_reassign_moves
