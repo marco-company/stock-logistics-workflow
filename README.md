@@ -89,6 +89,7 @@ addon | version | maintainers | summary
 [stock_picking_move_package_to_package](stock_picking_move_package_to_package/) | 16.0.1.0.1 |  | Move entire package to another package
 [stock_picking_operation_quick_change](stock_picking_operation_quick_change/) | 16.0.1.0.0 |  | Change location of all picking operations
 [stock_picking_origin_reference](stock_picking_origin_reference/) | 16.0.1.0.0 |  | Add clickable button to the Transfer Source Document.
+[stock_picking_origin_reference_purchase](stock_picking_origin_reference_purchase/) | 16.0.1.0.0 |  | Transfer to Purchase Order navigation from the Source Document.
 [stock_picking_partner_note](stock_picking_partner_note/) | 16.0.1.1.0 |  | Add partner notes on picking
 [stock_picking_portal](stock_picking_portal/) | 16.0.1.0.0 |  | Show customer delivery orders in portal
 [stock_picking_product_assortment](stock_picking_product_assortment/) | 16.0.1.0.0 | <a href='https://github.com/CarlosRoca13'><img src='https://github.com/CarlosRoca13.png' width='32' height='32' style='border-radius:50%;' alt='CarlosRoca13'/></a> | Stock Picking Product Assortment
