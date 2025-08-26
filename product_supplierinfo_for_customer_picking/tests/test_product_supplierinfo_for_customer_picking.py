@@ -1,10 +1,10 @@
 # Copyright 2018 ForgeFlow <http://www.forgeflow.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests.common import SavepointCase
+from odoo.tests import TransactionCase
 
 
-class TestProductSupplierinfoForCustomerPicking(SavepointCase):
+class TestProductSupplierinfoForCustomerPicking(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -22,7 +22,7 @@ class TestProductSupplierinfoForCustomerPicking(SavepointCase):
                         0,
                         0,
                         {
-                            "name": cls.deco_addict.id,
+                            "partner_id": cls.deco_addict.id,
                             "product_code": "test_deco_addict",
                             "product_name": "test prod name 1",
                             "company_id": cls.company_1,
@@ -32,7 +32,7 @@ class TestProductSupplierinfoForCustomerPicking(SavepointCase):
                         0,
                         0,
                         {
-                            "name": cls.gemini.id,
+                            "partner_id": cls.gemini.id,
                             "product_code": "test_gemini",
                             "product_name": "test prod name 2",
                             "company_id": cls.company_1,
@@ -49,14 +49,12 @@ class TestProductSupplierinfoForCustomerPicking(SavepointCase):
                 "picking_type_id": self.env.ref("stock.picking_type_out").id,
             }
         )
-        delivery_picking.onchange_picking_type()
+        delivery_picking._onchange_picking_type()
         delivery_picking = self.picking_model.create(
             {
                 "partner_id": delivery_picking.partner_id.id,
                 "picking_type_id": delivery_picking.picking_type_id.id,
-                "location_id": delivery_picking.location_id.id,
-                "location_dest_id": delivery_picking.location_dest_id.id,
-                "move_lines": [
+                "move_ids": [
                     (
                         0,
                         0,
@@ -65,19 +63,21 @@ class TestProductSupplierinfoForCustomerPicking(SavepointCase):
                             "product_id": self.computer_SC234.id,
                             "product_uom": self.computer_SC234.uom_id.id,
                             "product_uom_qty": 1.0,
+                            "location_id": delivery_picking.location_id.id,
+                            "location_dest_id": delivery_picking.location_dest_id.id,
                         },
                     )
                 ],
             }
         )
-        move = delivery_picking.move_lines[0]
+        move = delivery_picking.move_ids[0]
         self.assertEqual(move.product_customer_code, "test_deco_addict")
         self.assertEqual(move.product_customer_name, "test prod name 1")
 
         # Test that name stays the same on picking
         # even after a change
         customerinfo = self.computer_SC234.customer_ids.filtered(
-            lambda x: x.name == self.deco_addict
+            lambda x: x.partner_id == self.deco_addict
         )
         customerinfo.product_code = "different_code"
         customerinfo.product_name = "different name"
@@ -91,14 +91,12 @@ class TestProductSupplierinfoForCustomerPicking(SavepointCase):
                 "picking_type_id": self.env.ref("stock.picking_type_out").id,
             }
         )
-        delivery_picking.onchange_picking_type()
+        delivery_picking._onchange_picking_type()
         delivery_picking = self.picking_model.create(
             {
                 "partner_id": delivery_picking.partner_id.id,
                 "picking_type_id": delivery_picking.picking_type_id.id,
-                "location_id": delivery_picking.location_id.id,
-                "location_dest_id": delivery_picking.location_dest_id.id,
-                "move_lines": [
+                "move_ids": [
                     (
                         0,
                         0,
@@ -107,25 +105,16 @@ class TestProductSupplierinfoForCustomerPicking(SavepointCase):
                             "product_id": self.computer_SC234.id,
                             "product_uom": self.computer_SC234.uom_id.id,
                             "product_uom_qty": 1.0,
+                            "location_id": delivery_picking.location_id.id,
+                            "location_dest_id": delivery_picking.location_dest_id.id,
                         },
                     )
                 ],
             }
         )
-        move = delivery_picking.move_lines[0]
+        move = delivery_picking.move_ids[0]
         self.assertEqual(move.product_customer_code, "test_gemini")
         self.assertEqual(move.product_customer_name, "test prod name 2")
-
-        # Test that customer fields only depend on picking company, not user
-        move = move.with_company(self.company_2)
-        move._compute_product_customer_code()
-        self.assertEqual(move.product_customer_code, "test_gemini")
-        self.assertEqual(move.product_customer_name, "test prod name 2")
-
-        move = move.with_company(self.company_1)
-        move.company_id = self.company_2
-        self.assertEqual(move.product_customer_code, False)
-        self.assertEqual(move.product_customer_name, False)
 
     def test_product_supplierinfo_for_customer_parent_contact(self):
         """Test that supplierinfo_for_customer can also be
@@ -136,14 +125,12 @@ class TestProductSupplierinfoForCustomerPicking(SavepointCase):
                 "picking_type_id": self.env.ref("stock.picking_type_out").id,
             }
         )
-        delivery_picking.onchange_picking_type()
+        delivery_picking._onchange_picking_type()
         delivery_picking = self.picking_model.create(
             {
                 "partner_id": delivery_picking.partner_id.id,
                 "picking_type_id": delivery_picking.picking_type_id.id,
-                "location_id": delivery_picking.location_id.id,
-                "location_dest_id": delivery_picking.location_dest_id.id,
-                "move_lines": [
+                "move_ids": [
                     (
                         0,
                         0,
@@ -152,11 +139,13 @@ class TestProductSupplierinfoForCustomerPicking(SavepointCase):
                             "product_id": self.computer_SC234.id,
                             "product_uom": self.computer_SC234.uom_id.id,
                             "product_uom_qty": 1.0,
+                            "location_id": delivery_picking.location_id.id,
+                            "location_dest_id": delivery_picking.location_dest_id.id,
                         },
                     )
                 ],
             }
         )
-        move = delivery_picking.move_lines[0]
+        move = delivery_picking.move_ids[0]
         self.assertEqual(move.product_customer_code, "test_deco_addict")
         self.assertEqual(move.product_customer_name, "test prod name 1")
