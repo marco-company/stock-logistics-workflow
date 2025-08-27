@@ -4,7 +4,7 @@
 {
     "name": "Stock Move - Do not merge by destination moves",
     "summary": "Do not merge stock moves that go to different destination moves",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "development_status": "Alpha",
     "category": "Inventory/Inventory",
     "website": "https://github.com/OCA/stock-logistics-workflow",
