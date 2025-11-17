@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -43,7 +43,6 @@ msgstr ""
 #. module: stock_picking_late_activity
 #: model:ir.actions.server,name:stock_picking_late_activity.ir_cron_notify_late_activity_ir_actions_server
 #: model:ir.cron,cron_name:stock_picking_late_activity.ir_cron_notify_late_activity
-#: model:ir.cron,name:stock_picking_late_activity.ir_cron_notify_late_activity
 msgid "Picking: activities for late pickings"
 msgstr ""
 
