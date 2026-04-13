@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ======================
 Stock Move Actual Date
 ======================
@@ -17,7 +13,7 @@ Stock Move Actual Date
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fstock--logistics--workflow-lightgray.png?logo=github
@@ -45,6 +41,8 @@ and stored according to the following logic:
 - If there is no journal entry, the stock move's actual date is used
 - Otherwise, convert create_date (datetime) of the stock.valuation.layer
   record to date, with consideration to user's timezone.
+
+It also provides stock quantity history reporting based on the actual date.
 
 **Table of contents**
 
@@ -81,6 +79,16 @@ Use the Actual Date field in the following stock valuation reporting scenarios:
 2.  In the wizard, select a date in 'Inventory at Date', and click
     'Valuation as of Accounting Date' (note that 'hh:mm:ss' part of the
     selection in 'Inventory at Date' is ignored in this context).
+
+Use the Actual Date field in the following stock quantity history reporting scenarios:
+
+1. Go to Inventory > Reporting > Locations and click
+   'Inventory at Date'.
+2. In the wizard, select a date in 'Inventory at Date', and click
+   'Inventory as of Actual Date' (note that the 'hh:mm:ss' part of the selection
+   in 'Inventory at Date' is ignored in this context).
+
+Note: You can also use this feature along with stock_quantity_history_location.
 
 Known issues / Roadmap
 ======================
