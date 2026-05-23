@@ -6,18 +6,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-23 15:57+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: none\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: stock_picking_batch_print_pickings
 #: model:ir.actions.report,print_report_name:stock_picking_batch_print_pickings.action_report_picking_batch_print_pickings
 msgid "'Delivery Slips from Batch %s' % (object.name)"
-msgstr ""
+msgstr "'Albará de entrega da agrupación %s' % (object.name)"
 
 #. module: stock_picking_batch_print_pickings
 #: model:ir.model.fields,help:stock_picking_batch_print_pickings.field_stock_picking_type__print_documents_from_batch
@@ -31,38 +33,38 @@ msgstr ""
 #. module: stock_picking_batch_print_pickings
 #: model:ir.model,name:stock_picking_batch_print_pickings.model_stock_picking_batch
 msgid "Batch Transfer"
-msgstr ""
+msgstr "Transferir agrupación"
 
 #. module: stock_picking_batch_print_pickings
 #: model:ir.actions.report,name:stock_picking_batch_print_pickings.action_report_picking_batch_print_pickings
 #: model_terms:ir.ui.view,arch_db:stock_picking_batch_print_pickings.stock_picking_batch_form_inherit_stock_picking_batch_print_pickings
 msgid "Delivery Slips"
-msgstr ""
+msgstr "Albarás de Entrega"
 
 #. module: stock_picking_batch_print_pickings
 #: model:ir.actions.server,name:stock_picking_batch_print_pickings.action_print_pickings
 msgid "Delivery Slips/Invoices"
-msgstr ""
+msgstr "Albarás de Entrega/Facturas"
 
 #. module: stock_picking_batch_print_pickings
 #: model_terms:ir.ui.view,arch_db:stock_picking_batch_print_pickings.view_picking_type_form_inherit_stock_picking_batch_print_pickings
 msgid "Number of Copies per Picking"
-msgstr ""
+msgstr "Número de copias para imprimir por albará"
 
 #. module: stock_picking_batch_print_pickings
 #: model:ir.model.fields,field_description:stock_picking_batch_print_pickings.field_stock_picking_type__number_copies_pickings
 msgid "Number of copies"
-msgstr ""
+msgstr "Número de copias"
 
 #. module: stock_picking_batch_print_pickings
 #: model:ir.model.fields,help:stock_picking_batch_print_pickings.field_stock_picking_type__number_copies_pickings
 msgid "Number of copies per picking"
-msgstr ""
+msgstr "Número de copias para imprimir por albará"
 
 #. module: stock_picking_batch_print_pickings
 #: model:ir.model,name:stock_picking_batch_print_pickings.model_stock_picking_type
 msgid "Picking Type"
-msgstr ""
+msgstr "Tipo de operación"
 
 #. module: stock_picking_batch_print_pickings
 #. odoo-python
@@ -70,30 +72,32 @@ msgstr ""
 #, python-format
 msgid "Picking Type %(type)s is not configured to print from batch."
 msgstr ""
+"O tipo de operación %(type)s non está configurada para imprimir desde a "
+"agrupación de albarás."
 
 #. module: stock_picking_batch_print_pickings
 #: model:ir.model.fields.selection,name:stock_picking_batch_print_pickings.selection__stock_picking_type__print_documents_from_batch__pickings
 msgid "Pickings"
-msgstr ""
+msgstr "Albarás"
 
 #. module: stock_picking_batch_print_pickings
 #: model:ir.model.fields,field_description:stock_picking_batch_print_pickings.field_stock_picking_batch__print_documents
 msgid "Print Documents"
-msgstr ""
+msgstr "Imprimir documentos"
 
 #. module: stock_picking_batch_print_pickings
 #: model:ir.model.fields,field_description:stock_picking_batch_print_pickings.field_stock_picking_type__print_documents_from_batch
 msgid "Print Documents From Batch"
-msgstr ""
+msgstr "Imprimir documentos desde a agrupación de albarás"
 
 #. module: stock_picking_batch_print_pickings
 #: model:ir.model.fields,help:stock_picking_batch_print_pickings.field_stock_picking_batch__print_documents
 msgid "Print Pickings from Batch"
-msgstr ""
+msgstr "Imprimir albarás desde a agrupación"
 
 #. module: stock_picking_batch_print_pickings
 #. odoo-python
 #: code:addons/stock_picking_batch_print_pickings/models/stock_picking_type.py:0
 #, python-format
 msgid "The number of copies must be greater or equal to 0"
-msgstr ""
+msgstr "O número de copias deber ser maior ou igual que cero"
